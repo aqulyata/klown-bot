@@ -65,7 +65,7 @@ anekdoty = [
 @bot.command(name="ржака")
 async def humor(ctx):
     await ctx.channel.send(random.choice(anekdoty))
-
+    print(123)
 
 @bot.command(name='рофл')
 async def randimg(ctx):
