@@ -72,7 +72,7 @@ async def humor(ctx):
 async def randimg(ctx):
     randomimage = random.choice(images_2)
     await ctx.send(file=discord.File(randomimage))
-        print('fdss')
+        print('ьфе')
 
 @bot.event
 async def on_message(message):
