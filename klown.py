@@ -65,13 +65,15 @@ anekdoty = [
 @bot.command(name="ржака")
 async def humor(ctx):
     await ctx.channel.send(random.choice(anekdoty))
+    print(123)
+
     print('s')
 
 @bot.command(name='рофл')
 async def randimg(ctx):
     randomimage = random.choice(images_2)
     await ctx.send(file=discord.File(randomimage))
-
+        print('fdss')
 
 @bot.event
 async def on_message(message):
