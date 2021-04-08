@@ -8,17 +8,16 @@ import json
 import datetime
 from encoder import Message, MyEncoder
 
+images = ['6quii5Zg_400x400.jpg', 'M-YnMbnh_400x400.jpg', 'aMLNBRcbuSo.jpg']
 
-images = ['6quii5Zg_400x400.jpg','M-YnMbnh_400x400.jpg', 'aMLNBRcbuSo.jpg']
+images_2 = ['042.jpg', '84666b0a3f97811df3182830314bf754.jpg', '-5kigQVUa_M.jpg', 'H9RP3nk9OJo.jpg', 'IBzZiUpBSZ4.jpg',
+            'IMG_20210323_190342.jpg', 'iqF0IuSHvrQ.jpg', 'uMQKJA0_oHQ.jpg', 'X8h5f9BeYb4.jpg', 'zhyZCIf3Nuc.jpg']
 
-images_2 = ['042.jpg', '84666b0a3f97811df3182830314bf754.jpg', '-5kigQVUa_M.jpg', 'H9RP3nk9OJo.jpg', 'IBzZiUpBSZ4.jpg', 'IMG_20210323_190342.jpg', 'iqF0IuSHvrQ.jpg', 'uMQKJA0_oHQ.jpg', 'X8h5f9BeYb4.jpg', 'zhyZCIf3Nuc.jpg' ]
-
-id_deb = [695330777545834647, 630864081468915741,523383507888898050]
+id_deb = [695330777545834647, 630864081468915741, 523383507888898050]
 
 data = {"харча": []}
 
 bot = commands.Bot(command_prefix='>')
-
 
 anekdoty = [
     'Идея для стартапа: Пуховики для веганов на тополином пуху.',
@@ -62,18 +61,17 @@ anekdoty = [
     'Садится хохол в поезд, заходит в вагон, нашел свое купе. Открывает дверь, а там три негра сидят! Хохол: — Ой, хлопцы! А шо тут горело?'
 ]
 
+
 @bot.command(name="ржака")
 async def humor(ctx):
     await ctx.channel.send(random.choice(anekdoty))
-    print(123)
 
-    print('s')
 
 @bot.command(name='рофл')
 async def randimg(ctx):
     randomimage = random.choice(images_2)
     await ctx.send(file=discord.File(randomimage))
-        print('ьфе')
+
 
 @bot.event
 async def on_message(message):
@@ -85,7 +83,6 @@ async def on_message(message):
     await bot.process_commands(message)
 
 
-
 @bot.event
 async def on_disconnect():
     time = datetime.datetime.now()
@@ -95,7 +92,6 @@ async def on_disconnect():
 
 
 @bot.command(name='абоба')
-
 @commands.is_owner()
 async def bot_shutdown(ctx):
     await ctx.bot.logout()
@@ -106,11 +102,10 @@ async def on_ready():
     print('асалям')
 
 
-
 @bot.command(pass_context=True)
 async def hohol(ctx):
     if ctx.author.id in id_deb:
-            await ctx.channel.send('соси')
+        await ctx.channel.send('соси')
     elif (ctx.author.voice):
         channel = ctx.message.author.voice.channel
         voice = await channel.connect()
@@ -118,7 +113,7 @@ async def hohol(ctx):
         player = voice.play(source)
         player.start()
         while not player.is_done():
-                await asyncio.sleep(1)
+            await asyncio.sleep(1)
         player.stop()
         await voice.disconnect()
     else:
@@ -128,7 +123,7 @@ async def hohol(ctx):
 @bot.command(name='monke')
 async def randimg(ctx):
     if ctx.author.id in id_deb:
-            await ctx.channel.send('соси')
+        await ctx.channel.send('соси')
     else:
         random_image = random.choice(images)
         await ctx.send(file=discord.File(random_image))
@@ -137,33 +132,33 @@ async def randimg(ctx):
 @bot.command()
 async def fox(ctx):
     if ctx.author.id in id_deb:
-            await ctx.channel.send('соси')
+        await ctx.channel.send('соси')
     else:
         response = requests.get('https://some-random-api.ml/img/fox')
-        json_data = json.loads(response.text) 
+        json_data = json.loads(response.text)
 
-        embed = discord.Embed(color = 0xff9900, title = 'Random Fox') 
-        embed.set_image(url = json_data['link']) 
-        await ctx.send(embed = embed) 
+        embed = discord.Embed(color=0xff9900, title='Random Fox')
+        embed.set_image(url=json_data['link'])
+        await ctx.send(embed=embed)
 
 
 @bot.command()
 async def dog(ctx):
     if ctx.author.id in id_deb:
-            await ctx.channel.send('соси')
+        await ctx.channel.send('соси')
     else:
-        response = requests.get('https://some-random-api.ml/img/dog') 
-        json_data = json.loads(response.text) 
+        response = requests.get('https://some-random-api.ml/img/dog')
+        json_data = json.loads(response.text)
 
-        embed = discord.Embed(color = 0xff9900, title = 'Random dog') 
-        embed.set_image(url = json_data['link']) 
-        await ctx.send(embed = embed)
+        embed = discord.Embed(color=0xff9900, title='Random dog')
+        embed.set_image(url=json_data['link'])
+        await ctx.send(embed=embed)
 
 
 @bot.command()
 async def саша(ctx):
     if ctx.author.id in id_deb:
-            await ctx.channel.send('соси')
+        await ctx.channel.send('соси')
     else:
         await ctx.send('лапочка)')
 
@@ -171,7 +166,7 @@ async def саша(ctx):
 @bot.command()
 async def казл(ctx):
     if ctx.author.id in id_deb:
-            await ctx.channel.send('соси')
+        await ctx.channel.send('соси')
     else:
         await ctx.send('лох')
 
@@ -179,72 +174,73 @@ async def казл(ctx):
 @bot.command()
 async def сифон(ctx):
     if ctx.author.id in id_deb:
-            await ctx.channel.send('соси')
+        await ctx.channel.send('соси')
     else:
         await ctx.send('сифонит ежи')
 
 
 @bot.command()
-async def kick(ctx, member : discord.Member, *, reason=None):
+async def kick(ctx, member: discord.Member, *, reason=None):
     await member.kick(reason=reason)
     await ctx.send("цель ранена, но у нее есть шанс")
 
+
 @bot.command()
-async def ban(ctx, member : discord.Member, *, reason=None):
+async def ban(ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
     await ctx.send("цель окончательно уничтожена")
 
 
 @bot.command()
 async def menu(ctx):
-    page1 = discord.Embed (
-        title = 'Page 1/9',
-        description = ">ржака - выдает рандомный анекдот из списка 'anekdoty'",
-        colour = discord.Colour.orange()
+    page1 = discord.Embed(
+        title='Page 1/9',
+        description=">ржака - выдает рандомный анекдот из списка 'anekdoty'",
+        colour=discord.Colour.orange()
     )
-    page2 = discord.Embed (
-        title = 'Page 2/9',
-        description = ">рофл - рандомный анекдот в виде jpg",
-        colour = discord.Colour.orange()
+    page2 = discord.Embed(
+        title='Page 2/9',
+        description=">рофл - рандомный анекдот в виде jpg",
+        colour=discord.Colour.orange()
     )
-    page3 = discord.Embed (
-        title = 'Page 3/9',
-        description = ">абоба - завершение работы бота и запись взаимодействия с ним в json файл",
-        colour = discord.Colour.orange()
+    page3 = discord.Embed(
+        title='Page 3/9',
+        description=">абоба - завершение работы бота и запись взаимодействия с ним в json файл",
+        colour=discord.Colour.orange()
     )
-    page4 = discord.Embed (
-        title = 'Page 4/9',
-        description = ">kick - выгнать участника с сервера через тег(@),(необходимо иметь определенные разрешения)",
-        colour = discord.Colour.orange()
+    page4 = discord.Embed(
+        title='Page 4/9',
+        description=">kick - выгнать участника с сервера через тег(@),(необходимо иметь определенные разрешения)",
+        colour=discord.Colour.orange()
     )
-    page5 = discord.Embed (
-        title = 'Page 5/9',
-        description = ">ban - забанить участника на сервере через тег(@),(необходимо иметь определенные разрешения)",
-        colour = discord.Colour.orange()
+    page5 = discord.Embed(
+        title='Page 5/9',
+        description=">ban - забанить участника на сервере через тег(@),(необходимо иметь определенные разрешения)",
+        colour=discord.Colour.orange()
     )
-    page6 = discord.Embed (
-        title = 'Page 6/9',
-        description = ">hohol - изгоните хохла из своего голосового канала",
-        colour = discord.Colour.orange()
+    page6 = discord.Embed(
+        title='Page 6/9',
+        description=">hohol - изгоните хохла из своего голосового канала",
+        colour=discord.Colour.orange()
     )
-    page7 = discord.Embed (
-        title = 'Page 7/9',
-        description = ">monke - мартышки для всех желающих",
-        colour = discord.Colour.orange()
+    page7 = discord.Embed(
+        title='Page 7/9',
+        description=">monke - мартышки для всех желающих",
+        colour=discord.Colour.orange()
     )
-    page8 = discord.Embed (
-        title = 'Page 8/9',
-        description = ">dog/>fox - рандомная картинка собаки или лисы",
-        colour = discord.Colour.orange()
+    page8 = discord.Embed(
+        title='Page 8/9',
+        description=">dog/>fox - рандомная картинка собаки или лисы",
+        colour=discord.Colour.orange()
     )
-    page9 = discord.Embed (
-        title = 'Page 9/9',
-        description = "у бота есть несколько скрытых мини функций, о который я вам не скажу)))",
-        colour = discord.Colour.orange()
+    page9 = discord.Embed(
+        title='Page 9/9',
+        description="у бота есть несколько скрытых мини функций, о который я вам не скажу)))",
+        colour=discord.Colour.orange()
     )
     pages = [page1, page2, page3, page4, page5, page6, page7, page8, page9]
 
-    message = await ctx.send(embed = page1)
+    message = await ctx.send(embed=page1)
     await message.add_reaction('⏮')
     await message.add_reaction('◀')
     await message.add_reaction('▶')
@@ -259,27 +255,26 @@ async def menu(ctx):
     while True:
         if str(reaction) == '⏮':
             i = 0
-            await message.edit(embed = pages[i])
+            await message.edit(embed=pages[i])
         elif str(reaction) == '◀':
             if i > 0:
                 i -= 1
-                await message.edit(embed = pages[i])
+                await message.edit(embed=pages[i])
         elif str(reaction) == '▶':
             if i < 8:
                 i += 1
-                await message.edit(embed = pages[i])
+                await message.edit(embed=pages[i])
         elif str(reaction) == '⏭':
             i = 8
-            await message.edit(embed = pages[i])
-        
+            await message.edit(embed=pages[i])
+
         try:
-            reaction, user = await bot.wait_for('reaction_add', timeout = 30.0, check = check)
+            reaction, user = await bot.wait_for('reaction_add', timeout=30.0, check=check)
             await message.remove_reaction(reaction, user)
         except:
             break
 
     await message.clear_reactions()
-
 
 
 bot.run("ODEzNTA3Nzk3MDkzOTc0MDM2.YDQULQ.ZxA9dwcuhvnJ6kVQUMUgSWxyc7U")
