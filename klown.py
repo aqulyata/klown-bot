@@ -7,6 +7,8 @@ import asyncio
 import json
 import datetime
 from encoder import Message, MyEncoder
+from config import token
+
 
 images = ['6quii5Zg_400x400.jpg', 'M-YnMbnh_400x400.jpg', 'aMLNBRcbuSo.jpg']
 
@@ -277,4 +279,4 @@ async def menu(ctx):
     await message.clear_reactions()
 
 
-bot.run("ODEzNTA3Nzk3MDkzOTc0MDM2.YDQULQ.ZxA9dwcuhvnJ6kVQUMUgSWxyc7U")
+bot.run(token)
