@@ -9,7 +9,6 @@ import datetime
 from encoder import Message, MyEncoder
 from config import token
 
-
 images = ['6quii5Zg_400x400.jpg', 'M-YnMbnh_400x400.jpg', 'aMLNBRcbuSo.jpg']
 
 images_2 = ['042.jpg', '84666b0a3f97811df3182830314bf754.jpg', '-5kigQVUa_M.jpg', 'H9RP3nk9OJo.jpg', 'IBzZiUpBSZ4.jpg',
