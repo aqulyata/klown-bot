@@ -1,10 +1,9 @@
 import asyncio
 from discord import FFmpegPCMAudio
-from bot.command.command import Command
-from bot.klown import id_deb
+from bot.bot_command.botcommand import BotCommand
 
 
-class HoholCommand(Command):
+class HoholCommand(BotCommand):
     async def execute(self, ctx):
         if ctx.author.id in id_deb:
              ctx.channel.send('соси')

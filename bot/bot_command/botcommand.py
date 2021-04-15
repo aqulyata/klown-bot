@@ -1,7 +1,7 @@
 from discord import Message
 
 
-class Command:
+class BotCommand:
 
     async def execute(self, msg: Message):
         ...
