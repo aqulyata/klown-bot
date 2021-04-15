@@ -2,14 +2,17 @@ import discord
 import requests
 import random
 from discord.ext import commands
-from discord import FFmpegPCMAudio
-import asyncio
+# from discord import FFmpegPCMAudio
+# import asyncio
 import json
 import datetime
+
+from bot.command.command import Command
 from encoder import Message, MyEncoder
 from config import token
+from bot.command.hohol import HoholCommand
 
-images = ['6quii5Zg_400x400.jpg', 'M-YnMbnh_400x400.jpg', 'aMLNBRcbuSo.jpg']
+
 
 images_2 = ['042.jpg', '84666b0a3f97811df3182830314bf754.jpg', '-5kigQVUa_M.jpg', 'H9RP3nk9OJo.jpg', 'IBzZiUpBSZ4.jpg',
             'IMG_20210323_190342.jpg', 'iqF0IuSHvrQ.jpg', 'uMQKJA0_oHQ.jpg', 'X8h5f9BeYb4.jpg', 'zhyZCIf3Nuc.jpg']
@@ -18,8 +21,43 @@ id_deb = [695330777545834647, 630864081468915741, 523383507888898050]
 
 data = {"харча": []}
 
-bot = commands.Bot(command_prefix='>')
+prefix = '>'
 
+
+class KlownBotClient(discord.Client):
+
+    def __init__(self):
+        super().__init__()
+        self.commands = {}
+
+    async def on_ready(self):
+        print('Logged on as', self.user)
+
+    async def on_message(self, msg: discord.Message):
+
+        if msg.author == self.user:
+            return
+
+        text = msg.content
+
+        if not text.startswith(prefix):
+            return
+
+        text = text[len(prefix):]
+
+        cmd = text.split()[0]
+
+        if cmd not in self.commands:
+            return
+
+        await self.commands[cmd].execute(msg)
+
+    def register_command(self, command: Command):
+        self.commands[command.get_name()] = command
+
+bot = KlownBotClient()
+
+bot.register_command(HoholCommand())
 anekdoty = [
     'Идея для стартапа: Пуховики для веганов на тополином пуху.',
     'Если теперь Справедливая Россия - за правду, за что же она была раньше?',
@@ -101,24 +139,6 @@ async def bot_shutdown(ctx):
 @bot.event
 async def on_ready():
     print('асалям')
-
-
-@bot.command(pass_context=True)
-async def hohol(ctx):
-    if ctx.author.id in id_deb:
-        await ctx.channel.send('соси')
-    elif (ctx.author.voice):
-        channel = ctx.message.author.voice.channel
-        voice = await channel.connect()
-        source = FFmpegPCMAudio('hohol.mp3')
-        player = voice.play(source)
-        player.start()
-        while not player.is_done():
-            await asyncio.sleep(1)
-        player.stop()
-        await voice.disconnect()
-    else:
-        await ctx.send('в голосовой зайди ебло)')
 
 
 @bot.command(name='monke')
