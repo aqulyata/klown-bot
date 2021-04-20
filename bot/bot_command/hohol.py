@@ -4,11 +4,9 @@ from bot.bot_command.botcommand import BotCommand
 
 
 class HoholCommand(BotCommand):
-    async def execute(self, ctx):
-        if ctx.author.id in id_deb:
-             ctx.channel.send('соси')
-        elif ctx.author.voice:
-            channel = ctx.message.author.voice.channel
+    async def execute(self, message):
+        if message.author.voice:
+            channel = message.author.voice.channel
             voice = await channel.connect()
             source = FFmpegPCMAudio('hohol.mp3')
             player = voice.play(source)
@@ -18,7 +16,7 @@ class HoholCommand(BotCommand):
             player.stop()
             await voice.disconnect()
         else:
-            await ctx.send('в голосовой зайди ебло)')
+            await message.channel.send('в голосовой зайди ебло)')
 
     def get_name(self):
         return "hohol"

@@ -1,13 +1,11 @@
 import discord
-import requests
-import random
-from discord.ext import commands
-# from discord import FFmpegPCMAudio
-# import asyncio
 import json
 import datetime
-
+from bot.bot_command.aboba import AbobaCommand
 from bot.bot_command.botcommand import BotCommand
+from bot.bot_command.fox import FoxCommand
+from bot.bot_command.menu import MenuCommand
+from bot.bot_command.monke import MonkeCommand
 from encoder import Message, MyEncoder
 from config import token
 from bot.bot_command.hohol import HoholCommand
@@ -29,7 +27,7 @@ class KlownBotClient(discord.Client):
         print('Logged on as', self.user)
 
     async def on_message(self, msg: discord.Message):
-
+        print('ssss')
         if msg.author == self.user:
             return
 
@@ -56,6 +54,10 @@ class KlownBotClient(discord.Client):
 
 bot = KlownBotClient()
 bot.register_command(HoholCommand())
+bot.register_command(MenuCommand())
+bot.register_command(MonkeCommand())
+bot.register_command(AbobaCommand())
+bot.register_command(FoxCommand())
 
 anekdoty = [
     'Идея для стартапа: Пуховики для веганов на тополином пуху.',
@@ -111,22 +113,22 @@ anekdoty = [
 #     await ctx.send(file=discord.File(randomimage))
 
 
-@bot.event
-async def on_message(message):
-    split_message = message.content.split()
-    if len(split_message) == 0:
-        return None
-    msg = Message(message.author, message.content)
-    data["харча"].append(msg)
-    bot.process_commands(message)
+# @bot.event
+# async def on_message(message):
+#     split_message = message.content.split()
+#     if len(split_message) == 0:
+#         return None
+#     msg = Message(message.author, message.content)
+#     data["харча"].append(msg)
+#     bot.process_commands(message)
 
 
-@bot.event
-async def on_disconnect():
-    time = datetime.datetime.now()
-    print('bydlo disconnect at {}'.format(time))
-    with open('musor.json', 'w', encoding='utf-8') as file:
-        json.dump(data, file, cls=MyEncoder, indent=4, ensure_ascii=False)
+# @bot.event
+# async def on_disconnect():
+#     time = datetime.datetime.now()
+#     print('bydlo disconnect at {}'.format(time))
+#     with open('musor.json', 'w', encoding='utf-8') as file:
+#         json.dump(data, file, cls=MyEncoder, indent=4, ensure_ascii=False)
 
 
 # @bot.command(name='абоба')
@@ -135,9 +137,9 @@ async def on_disconnect():
 #     await ctx.bot.logout()
 
 
-@bot.event
-async def on_ready():
-    print('асалям')
+# @bot.event
+# async def on_ready():
+#     print('асалям')
 
 
 # @bot.command(name='monke')
