@@ -1,10 +1,10 @@
 import discord
-from discord.ext.commands import bot
+#from discord.ext.commands import bot
 from bot.bot_command.botcommand import BotCommand
 
 
 class MenuCommand(BotCommand):
-    async def execute(self, msg):
+    async def execute(self, message):
         page1 = discord.Embed(
             title='Page 1/9',
             description=">ржака - выдает рандомный анекдот из списка 'anekdoty'",
@@ -59,34 +59,34 @@ class MenuCommand(BotCommand):
         await message.add_reaction('⏭')
 
         def check(reaction, user):
-            return user == msg.author
+            return user == message.author
 
         i = 0
         reaction = None
 
-        while True:
-            if str(reaction) == '⏮':
-                i = 0
-                await message.edit(embed=pages[i])
-            elif str(reaction) == '◀':
-                if i > 0:
-                    i -= 1
-                    await message.edit(embed=pages[i])
-            elif str(reaction) == '▶':
-                if i < 8:
-                    i += 1
-                    await message.edit(embed=pages[i])
-            elif str(reaction) == '⏭':
-                i = 8
-                await message.edit(embed=pages[i])
+        # while True:
+        #     if str(reaction) == '⏮':
+        #         i = 0
+        #         await message.edit(embed=pages[i])
+        #     elif str(reaction) == '◀':
+        #         if i > 0:
+        #             i -= 1
+        #             await message.edit(embed=pages[i])
+        #     elif str(reaction) == '▶':
+        #         if i < 8:
+        #             i += 1
+        #             await message.edit(embed=pages[i])
+        #     elif str(reaction) == '⏭':
+        #         i = 8
+        #         await message.edit(embed=pages[i])
 
-            try:
-                reaction, user = await bot.wait_for('reaction_add', timeout=30.0, check=check)
-                await message.remove_reaction(reaction, user)
-            except:
-                break
-
-        await message.clear_reactions()
+        #     try:
+        #         reaction, user = await bot.wait_for('reaction_add', timeout=30.0, check=check)
+        #         await message.remove_reaction(reaction, user)
+        #     except:
+        #         break
+        #
+        # await message.clear_reactions()
 
     def get_name(self):
         return "menu"
