@@ -11,9 +11,9 @@ class HoholCommand(BotCommand):
             source = FFmpegPCMAudio('hohol.mp3')
             player = voice.play(source)
             player.start()
-            while not player.is_done():
-                await asyncio.sleep(1)
-            player.stop()
+            # while not player.is_done():
+            #     await asyncio.sleep(1)
+            # player.stop()
             await voice.disconnect()
         else:
             await message.channel.send('в голосовой зайди ебло)')
