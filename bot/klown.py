@@ -4,18 +4,18 @@ import datetime
 from bot.bot_command.aboba import AbobaCommand
 from bot.bot_command.botcommand import BotCommand
 from bot.bot_command.fox import FoxCommand
-from bot.bot_command.menu import MenuCommand
+# from bot.bot_command.menu import MenuCommand
 from bot.bot_command.monke import MonkeCommand
 from encoder import Message, MyEncoder
 from config import token
 from bot.bot_command.hohol import HoholCommand
+from bot.bot_command.anekparser import AnekParserCommand
 
 id_deb = [695330777545834647, 630864081468915741, 523383507888898050]
 
 data = {"харча": []}
 
 prefix = '>'
-
 
 class KlownBotClient(discord.Client):
 
@@ -54,10 +54,11 @@ class KlownBotClient(discord.Client):
 
 bot = KlownBotClient()
 bot.register_command(HoholCommand())
-bot.register_command(MenuCommand())
+# bot.register_command(MenuCommand())
 bot.register_command(MonkeCommand())
 bot.register_command(AbobaCommand())
 bot.register_command(FoxCommand())
+bot.register_command(AnekParserCommand())
 
 anekdoty = [
     'Идея для стартапа: Пуховики для веганов на тополином пуху.',
