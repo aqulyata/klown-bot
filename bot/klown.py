@@ -6,16 +6,20 @@ from bot.bot_command.botcommand import BotCommand
 from bot.bot_command.fox import FoxCommand
 # from bot.bot_command.menu import MenuCommand
 from bot.bot_command.monke import MonkeCommand
+from bot.bot_command.yparser import FindYoutubeCommand
 from encoder import Message, MyEncoder
 from config import token
 from bot.bot_command.hohol import HoholCommand
 from bot.bot_command.anekparser import AnekParserCommand
+from pyyoutube import Api
 
+api = Api(api_key="AIzaSyCKbzet_GR_5zMfkvFv3xpNWQ38ulBmbQk")
 id_deb = [695330777545834647, 630864081468915741, 523383507888898050]
 
-data = {"харча": []}
+#data = {"харча": []}
 
 prefix = '>'
+
 
 class KlownBotClient(discord.Client):
 
@@ -42,8 +46,13 @@ class KlownBotClient(discord.Client):
 
         if cmd not in self.commands:
             return
+        content = msg.content.split(" ", 1)
+        if len(content) >= 2:
+            content = content[1]
+        else:
+            content = None
 
-        await self.commands[cmd].execute(msg)
+        await self.commands[cmd].execute(msg, content)
 
     def register_command(self, command: BotCommand):
         self.commands[command.get_name()] = command
@@ -59,6 +68,7 @@ bot.register_command(MonkeCommand())
 bot.register_command(AbobaCommand())
 bot.register_command(FoxCommand())
 bot.register_command(AnekParserCommand())
+bot.register_command(FindYoutubeCommand())
 
 anekdoty = [
     'Идея для стартапа: Пуховики для веганов на тополином пуху.',
@@ -101,7 +111,6 @@ anekdoty = [
     'Хохлушка проходит медосмотр. После посещения гинеколога читает у себя в карточке: Здорова. — Вот жлоб! Не мог написать, что мала?',
     'Садится хохол в поезд, заходит в вагон, нашел свое купе. Открывает дверь, а там три негра сидят! Хохол: — Ой, хлопцы! А шо тут горело?'
 ]
-
 
 # @bot.bot_command(name="ржака")
 # async def humor(ctx):
