@@ -1,6 +1,7 @@
 import discord
 import json
 import datetime
+
 from bot.bot_command.aboba import AbobaCommand
 from bot.bot_command.botcommand import BotCommand
 from bot.bot_command.fox import FoxCommand
@@ -11,21 +12,27 @@ from encoder import Message, MyEncoder
 from config import token
 from bot.bot_command.hohol import HoholCommand
 from bot.bot_command.anekparser import AnekParserCommand
-from pyyoutube import Api
 
-api = Api(api_key="AIzaSyCKbzet_GR_5zMfkvFv3xpNWQ38ulBmbQk")
 id_deb = [695330777545834647, 630864081468915741, 523383507888898050]
 
-#data = {"харча": []}
+# data = {"харча": []}
 
 prefix = '>'
+
 
 
 class KlownBotClient(discord.Client):
 
     def __init__(self):
-        super().__init__()
+        intents = discord.Intents.default()
+        intents.members = True
+        super().__init__(intents=intents)
         self.commands = {}
+
+    async def on_member_join(self, member):
+        channel = bot.get_channel(827609097187885111)
+        print('user join the servers')
+        await channel.send(embed=discord.Embed(description=f'``{member.name}`` присоединился', color=0x0c0c0c))
 
     async def on_ready(self):
         print('Logged on as', self.user)
@@ -112,6 +119,7 @@ anekdoty = [
     'Садится хохол в поезд, заходит в вагон, нашел свое купе. Открывает дверь, а там три негра сидят! Хохол: — Ой, хлопцы! А шо тут горело?'
 ]
 
+
 # @bot.bot_command(name="ржака")
 # async def humor(ctx):
 #     await ctx.channel.send(random.choice(anekdoty))
@@ -146,10 +154,12 @@ anekdoty = [
 # async def bot_shutdown(ctx):
 #     await ctx.bot.logout()
 
-
+#
 # @bot.event
-# async def on_ready():
-#     print('асалям')
+# async def on_member_join(member):
+#     channel = bot.get_channel(827609097187885111)
+#     print('user join the servers')
+#     await channel.send(embed=discord.Embed(description=f'``{member.name}`` присоединился', color=0x0c0c0c))
 
 
 # @bot.command(name='monke')
