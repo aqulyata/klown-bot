@@ -1,11 +1,14 @@
 import discord
 import json
 import datetime
+import PIL
+from PIL import Image, ImageFont, ImageDraw
 from bot.bot_command.aboba import AbobaCommand
 from bot.bot_command.botcommand import BotCommand
 from bot.bot_command.fox import FoxCommand
 from bot.bot_command.menu import MenuCommand
 from bot.bot_command.monke import MonkeCommand
+from bot.bot_command.Photo import PhotoCommand
 from encoder import Message, MyEncoder
 from config import token
 from bot.bot_command.hohol import HoholCommand
@@ -58,6 +61,7 @@ bot.register_command(MenuCommand())
 bot.register_command(MonkeCommand())
 bot.register_command(AbobaCommand())
 bot.register_command(FoxCommand())
+bot.register_command(PhotoCommand())
 
 anekdoty = [
     'Идея для стартапа: Пуховики для веганов на тополином пуху.',
@@ -100,7 +104,6 @@ anekdoty = [
     'Хохлушка проходит медосмотр. После посещения гинеколога читает у себя в карточке: Здорова. — Вот жлоб! Не мог написать, что мала?',
     'Садится хохол в поезд, заходит в вагон, нашел свое купе. Открывает дверь, а там три негра сидят! Хохол: — Ой, хлопцы! А шо тут горело?'
 ]
-
 
 # @bot.bot_command(name="ржака")
 # async def humor(ctx):
